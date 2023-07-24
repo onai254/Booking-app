@@ -12,7 +12,9 @@ func main() {
 
 	const conferenceTickers = 200
 
-	var remainingTicket = 200
+	var remainingTicket uint = 200
+
+	fmt.Printf("Conference Name is which type %T \n The Ticket is chich type %T \n the Location is which type %T \n", conferenceName, conferenceTickers, location)
 
 	fmt.Printf("Welcome to %v 2023 \n", conferenceName)
 
@@ -21,5 +23,18 @@ func main() {
 	fmt.Printf("Its the %v Event Get your %v Here \n", kcdNairobi, ticket)
 
 	fmt.Println("The event will be hosted at ", location)
+
+	var userName string
+	var userTicker int
+
+	// User Name
+
+	fmt.Println(remainingTicket)
+	fmt.Println(&remainingTicket)
+
+	userName = "Onai"
+	userTicker = 2
+
+	fmt.Printf("user %v has bought %v ticket \n ", userName, userTicker)
 
 }
