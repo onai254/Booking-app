@@ -7,7 +7,7 @@ import (
 func main() {
 	var conferenceName = " Nairobi DevOps Days - KCD"
 	var kcdNairobi = "Kubernetes Community Days"
-	var tickt = "Ticket"
+	var ticket = "Ticket"
 	var location = "Moringa"
 
 	const conferenceTickers = 200
@@ -18,7 +18,7 @@ func main() {
 
 	fmt.Printf("we Have a total of %v conference tickets and %v remainig \n", conferenceTickers, remainingTicket)
 
-	fmt.Printf("Its the %v Event Get your %v Here \n", kcdNairobi, tickt)
+	fmt.Printf("Its the %v Event Get your %v Here \n", kcdNairobi, ticket)
 
 	fmt.Println("The event will be hosted at ", location)
 
