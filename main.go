@@ -14,8 +14,6 @@ func main() {
 
 	var remainingTicket uint = 200
 
-	fmt.Printf("Conference Name is which type %T \n The Ticket is chich type %T \n the Location is which type %T \n", conferenceName, conferenceTickers, location)
-
 	fmt.Printf("Welcome to %v 2023 \n", conferenceName)
 
 	fmt.Printf("we Have a total of %v conference tickets and %v remainig \n", conferenceTickers, remainingTicket)
@@ -25,13 +23,28 @@ func main() {
 	fmt.Println("The event will be hosted at ", location)
 
 	var userName string
-	var userTicker int
+	var userTicket uint
+	var lastName string
+	var email string
 
 	// User Name
+
+	fmt.Println("Enter Your First Name")
 	fmt.Scan(&userName)
 
-	userTicker = 2
+	fmt.Println("Enter Your Last Name")
+	fmt.Scan(&lastName)
 
-	fmt.Printf("user %v has bought %v ticket \n ", userName, userTicker)
+	fmt.Println("Enter your Email")
+	fmt.Scan(&email)
+
+	fmt.Printf("Emter Number of Tickets")
+	fmt.Scan(&userTicket)
+
+	remainingTicket = remainingTicket - userTicket
+
+	fmt.Printf("Thank you for booking %v Tickets You will receive your confirmation email at %v \n ", userTicket, email)
+
+	fmt.Printf("user %v has bought %v ticket \n The remaining number of tickets are %v", userName, userTicket, remainingTicket)
 
 }
