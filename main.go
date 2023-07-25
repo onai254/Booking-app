@@ -9,6 +9,7 @@ func main() {
 	var kcdNairobi = "Kubernetes Community Days"
 	var ticket = "Ticket"
 	var location = "Moringa"
+	var bookings [200]string
 
 	const conferenceTickers = 200
 
@@ -42,6 +43,13 @@ func main() {
 	fmt.Scan(&userTicket)
 
 	remainingTicket = remainingTicket - userTicket
+
+	bookings[0] = userName + " " + lastName
+
+	fmt.Printf("The whole array: %v \n ", bookings)
+	fmt.Printf("The first value: %v \n ", bookings[0])
+	fmt.Printf("Array type: %T \n", bookings)
+	fmt.Printf("The size of the array %v \n", len(bookings))
 
 	fmt.Printf("Thank you for booking %v Tickets You will receive your confirmation email at %v \n ", userTicket, email)
 
