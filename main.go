@@ -23,36 +23,37 @@ func main() {
 
 	fmt.Println("The event will be hosted at ", location)
 
-	var userName string
-	var userTicket uint
-	var lastName string
-	var email string
+	for {
 
-	// User Name
+		var userName string
+		var userTicket uint
+		var lastName string
+		var email string
 
-	fmt.Println("Enter Your First Name")
-	fmt.Scan(&userName)
+		// User Name
 
-	fmt.Println("Enter Your Last Name")
-	fmt.Scan(&lastName)
+		fmt.Println("Enter Your First Name")
+		fmt.Scan(&userName)
 
-	fmt.Println("Enter your Email")
-	fmt.Scan(&email)
+		fmt.Println("Enter Your Last Name")
+		fmt.Scan(&lastName)
 
-	fmt.Printf("Emter Number of Tickets")
-	fmt.Scan(&userTicket)
+		fmt.Println("Enter your Email")
+		fmt.Scan(&email)
 
-	remainingTicket = remainingTicket - userTicket
+		fmt.Printf("Emter Number of Tickets")
+		fmt.Scan(&userTicket)
 
-	bookings = append(bookings, userName+" "+lastName)
+		remainingTicket = remainingTicket - userTicket
 
-	fmt.Printf("The whole Slice: %v \n ", bookings)
-	fmt.Printf("The first value: %v \n ", bookings[0])
-	fmt.Printf("Slice type: %T \n", bookings)
-	fmt.Printf("The size of the array %v \n", len(bookings))
+		bookings = append(bookings, userName+" "+lastName)
 
-	fmt.Printf("Thank you for booking %v Tickets You will receive your confirmation email at %v \n ", userTicket, email)
+		fmt.Printf("Thank you for booking %v Tickets You will receive your confirmation email at %v \n ", userTicket, email)
 
-	fmt.Printf("user %v has bought %v ticket \n The remaining number of tickets are %v", userName, userTicket, remainingTicket)
+		fmt.Printf("user %v has bought %v ticket \n The remaining number of tickets are %v", userName, userTicket, remainingTicket)
+
+		fmt.Printf("This are all our bookings: %v", bookings)
+
+	}
 
 }
