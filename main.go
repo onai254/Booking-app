@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	var conferenceName = " Nairobi DevOps Days - KCD"
+	conferenceName := " Nairobi DevOps Days - KCD"
 	var kcdNairobi = "Kubernetes Community Days"
 	var ticket = "Ticket"
 	var location = "Moringa"
@@ -28,11 +28,8 @@ func main() {
 	var userTicker int
 
 	// User Name
+	fmt.Scan(&userName)
 
-	fmt.Println(remainingTicket)
-	fmt.Println(&remainingTicket)
-
-	userName = "Onai"
 	userTicker = 2
 
 	fmt.Printf("user %v has bought %v ticket \n ", userName, userTicker)
