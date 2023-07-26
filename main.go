@@ -31,7 +31,7 @@ func main() {
 		var lastName string
 		var email string
 
-		// User Name
+		// User Name is the name the user will create the account with
 
 		fmt.Println("Enter Your First Name")
 		fmt.Scan(&userName)
@@ -45,23 +45,30 @@ func main() {
 		fmt.Printf("Emter Number of Tickets")
 		fmt.Scan(&userTicket)
 
-		if userTicket <= remainingTicket {
+		isValidName := len(userName) >= 6 && len(lastName) >= 6
+		isValidEmail := strings.Contains(email, "@")
+		isValidTicketNumber := userTicket > 0 && userTicket <= remainingTicket
+
+		if isValidEmail && isValidName && isValidTicketNumber {
 			remainingTicket = remainingTicket - userTicket
 			bookings = append(bookings, userName+" "+lastName)
 
 			fmt.Printf("Thank you for booking %v Tickets You will receive your confirmation email at %v \n ", userTicket, email)
 			fmt.Printf("user %v has bought %v ticket \n The remaining number of tickets are %v \n", userName, userTicket, remainingTicket)
 
-			userNames := []string{}
+			// First Name The first Name of the users will be displayed when the user finishes registering.
+
+			firstNames := []string{}
 			for _, booking := range bookings {
 				var names = strings.Fields(booking)
-				userNames = append(userNames, names[0])
+				firstNames = append(firstNames, names[0])
 			}
 
-			fmt.Printf("The first name of bookings: %v \n", userNames)
+			fmt.Printf("The first name of bookings: %v \n", firstNames)
 
 			var ifNoTicketRemaining bool = remainingTicket == 0
 			if ifNoTicketRemaining {
+
 				// end program
 				fmt.Printf("Our Conference ticket is sold out Come back nexy year \n")
 				break
