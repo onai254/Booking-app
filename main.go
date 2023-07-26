@@ -3,6 +3,7 @@ package main
 import (
 	"booking-app/helper"
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -21,6 +22,8 @@ type userData struct {
 	numberOfTickets uint
 }
 
+var wg = sync.WaitGroup{}
+
 func main() {
 
 	//Function for greeting users
@@ -28,40 +31,42 @@ func main() {
 	greetUsers()
 
 	// Main Login function
-	for {
-		userName, lastName, email, userTicket := getUserInput()
-		isValidName, isValidEmail, isValidTicketNumber := helper.UserInputValidation(userName, lastName, email, userTicket, remainingTicket)
 
-		if isValidName && isValidEmail && isValidTicketNumber {
+	userName, lastName, email, userTicket := getUserInput()
+	isValidName, isValidEmail, isValidTicketNumber := helper.UserInputValidation(userName, lastName, email, userTicket, remainingTicket)
 
-			bookTicket(userTicket, userName, lastName, email)
-			sendTicket(userTicket, userName, lastName, email)
+	if isValidName && isValidEmail && isValidTicketNumber {
 
-			// Call for function print first name
+		bookTicket(userTicket, userName, lastName, email)
 
-			firstNames := getFirstName()
-			fmt.Printf("The First Name of the bookings are %v", firstNames)
+		wg.Add(1)
+		go sendTicket(userTicket, userName, lastName, email)
 
-			var ifNoTicketRemaining bool = remainingTicket == 0
-			if ifNoTicketRemaining {
+		// Call for function print first name
 
-				// end program
-				fmt.Printf("Our Conference ticket is sold out Come back nexy year \n")
-				break
-			}
+		firstNames := getFirstName()
+		fmt.Printf("The First Name of the bookings are %v", firstNames)
 
-		} else {
-			if !isValidEmail {
-				fmt.Print("Check the Email Does not have the @ match \n")
-			}
-			if !isValidName {
-				fmt.Print("Check the First NAme and Last Name does not contain 6 characters \n")
-			}
-			if !isValidTicketNumber {
-				fmt.Printf("The number of tickets are invalid\n")
-			}
+		var ifNoTicketRemaining bool = remainingTicket == 0
+		if ifNoTicketRemaining {
+
+			// end program
+			fmt.Printf("Our Conference ticket is sold out Come back nexy year \n")
+			//break
+		}
+
+	} else {
+		if !isValidEmail {
+			fmt.Print("Check the Email Does not have the @ match \n")
+		}
+		if !isValidName {
+			fmt.Print("Check the First NAme and Last Name does not contain 6 characters \n")
+		}
+		if !isValidTicketNumber {
+			fmt.Printf("The number of tickets are invalid\n")
 		}
 	}
+	wg.Wait()
 }
 func greetUsers() {
 
@@ -128,5 +133,7 @@ func sendTicket(userTicket uint, userName string, lastName string, email string)
 	fmt.Printf("################ \n")
 	fmt.Printf("Sending Ticket : \n %v \n To email address %v \n", ticket, email)
 	fmt.Printf("################ \n")
+
+	wg.Done()
 
 }
