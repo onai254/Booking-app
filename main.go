@@ -6,23 +6,14 @@ import (
 )
 
 func main() {
-	conferenceName := " Nairobi DevOps Days - KCD"
-	var kcdNairobi = "Kubernetes Community Days"
-	var ticket = "Ticket"
-	var location = "Moringa"
+	conferenceName := "Nairobi DevOps Days - KCD"
+	// kcdNairobi := "Kubernetes Community Days Nairobi"
+	location := "Moringa"
 	var bookings []string
-
 	const conferenceTickers = 200
-
 	var remainingTicket uint = 200
 
-	fmt.Printf("Welcome to %v 2023 \n", conferenceName)
-
-	fmt.Printf("we Have a total of %v conference tickets and %v remainig \n", conferenceTickers, remainingTicket)
-
-	fmt.Printf("Its the %v Event Get your %v Here \n", kcdNairobi, ticket)
-
-	fmt.Println("The event will be hosted at ", location)
+	greetUsers(conferenceName, conferenceTickers, remainingTicket, location)
 
 	for {
 
@@ -75,9 +66,21 @@ func main() {
 			}
 
 		} else {
-			fmt.Printf("We only have %v tickets, so you cant book %v tickets", remainingTicket, remainingTicket)
+			if !isValidEmail {
+				fmt.Print("Check the Email Does not have the @ match \n")
+			}
+			if !isValidName {
+				fmt.Print("Check the First NAme and Last Name does not contain 6 characters \n")
+			}
+			if !isValidTicketNumber {
+				fmt.Printf("The number of tickets are invalid\n")
+			}
 		}
-
 	}
+}
+func greetUsers(conferenceName string, conferenceTickers int, remainingTicket uint, location string) {
 
+	fmt.Printf("Welcome to %v \n", conferenceName)
+	fmt.Printf("we Have a total of %v conference tickets and %v remainig \n", conferenceTickers, remainingTicket)
+	fmt.Printf("Location for the Evnet is %v \n", location)
 }
