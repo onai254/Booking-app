@@ -13,8 +13,11 @@ func main() {
 	const conferenceTickers = 200
 	var remainingTicket uint = 200
 
+	//Function for greeting users
+
 	greetUsers(conferenceName, conferenceTickers, remainingTicket, location)
 
+	// Main Login function
 	for {
 
 		var userName string
@@ -33,29 +36,23 @@ func main() {
 		fmt.Println("Enter your Email")
 		fmt.Scan(&email)
 
-		fmt.Printf("Emter Number of Tickets")
+		fmt.Println("Emter Number of Tickets")
 		fmt.Scan(&userTicket)
 
-		isValidName := len(userName) >= 6 && len(lastName) >= 6
-		isValidEmail := strings.Contains(email, "@")
-		isValidTicketNumber := userTicket > 0 && userTicket <= remainingTicket
+		isValidName, isValidEmail, isValidTicketNumber := userInputValidation(userName, lastName, email, userTicket, remainingTicket)
 
-		if isValidEmail && isValidName && isValidTicketNumber {
+		if isValidName && isValidEmail && isValidTicketNumber {
+
 			remainingTicket = remainingTicket - userTicket
 			bookings = append(bookings, userName+" "+lastName)
 
 			fmt.Printf("Thank you for booking %v Tickets You will receive your confirmation email at %v \n ", userTicket, email)
 			fmt.Printf("user %v has bought %v ticket \n The remaining number of tickets are %v \n", userName, userTicket, remainingTicket)
 
-			// First Name The first Name of the users will be displayed when the user finishes registering.
+			// Call for function print first name
 
-			firstNames := []string{}
-			for _, booking := range bookings {
-				var names = strings.Fields(booking)
-				firstNames = append(firstNames, names[0])
-			}
-
-			fmt.Printf("The first name of bookings: %v \n", firstNames)
+			firstNames := getFirstName(bookings)
+			fmt.Printf("The First Name of the bookings are %v", firstNames)
 
 			var ifNoTicketRemaining bool = remainingTicket == 0
 			if ifNoTicketRemaining {
@@ -83,4 +80,22 @@ func greetUsers(conferenceName string, conferenceTickers int, remainingTicket ui
 	fmt.Printf("Welcome to %v \n", conferenceName)
 	fmt.Printf("we Have a total of %v conference tickets and %v remainig \n", conferenceTickers, remainingTicket)
 	fmt.Printf("Location for the Evnet is %v \n", location)
+}
+
+func getFirstName(bookings []string) []string {
+
+	firstNames := []string{}
+	for _, booking := range bookings {
+		var names = strings.Fields(booking)
+		firstNames = append(firstNames, names[0])
+	}
+	return firstNames
+}
+
+func userInputValidation(userName string, lastName string, email string, userTicket uint, remainingTicket uint) (bool, bool, bool) {
+	isValidName := len(userName) >= 6 && len(lastName) >= 6
+	isValidEmail := strings.Contains(email, "@")
+	isValidTicketNumber := userTicket > 0 && userTicket <= remainingTicket
+
+	return isValidName, isValidEmail, isValidTicketNumber
 }
