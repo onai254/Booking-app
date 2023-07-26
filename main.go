@@ -26,6 +26,8 @@ func main() {
 
 		if isValidName && isValidEmail && isValidTicketNumber {
 
+			bookTicket(userTicket, userName, lastName, email)
+
 			// Call for function print first name
 
 			firstNames := getFirstName()
@@ -100,7 +102,7 @@ func getUserInput() (string, string, string, uint) {
 	return userName, lastName, email, userTicket
 }
 
-func bookTicket(userTicket uint, bookings []string, userName string, lastName string, email string) {
+func bookTicket(userTicket uint, userName string, lastName string, email string) {
 	remainingTicket = remainingTicket - userTicket
 	bookings = append(bookings, userName+" "+lastName)
 
